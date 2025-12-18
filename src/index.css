@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+:root{
+  --bgColor: #fefae0;
+  --mainColor: #F9B603;
+
+  height: 100%;
+}
+
+@font-face {
+  font-family: logo;
+  src: url(./assets/Fonts/Chillax-Variable.ttf);
+}
+@font-face {
+  font-family: Muck;
+  src: url(./assets/Fonts/MuckleyBold.ttf);
+}
+
+
+/* Chrome, Edge, Safari ----- to remove up down arrown input */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+@media print {
+ 
+  .PrintDiv{
+    position: static;
+    position: absolute;
+    top: 0;
+    width: 80mm;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+ .PrintHide {
+   visibility: hidden;
+  }
+
+  .shopDetails{
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* width of scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* remove arrows */
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* thumb */
+::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+
+input::placeholder{
+  color: rgb(169, 167, 167);
+}
+
+.backgroundImageDiv{
+  background-image: url(../src/assets/FoodImages/extra/backgroundImage.jpg);
+
+}
