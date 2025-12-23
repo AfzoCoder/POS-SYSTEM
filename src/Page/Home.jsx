@@ -31,9 +31,9 @@ const Home = () => {
   }, [selectedDate, filterPayment]);
 
   return (
-    <div className="w-full md:full  h-full px-3  rounded-xl flex flex-col ">
+    <div className="w-full md:full  h-full px-3  rounded-xl flex flex-col justify-center items-center ">
       {/* Heading Options */}
-      <div className="heading w-full rounded-xl bg-(--mainColor) p-2">
+      <div className="heading w-full rounded-xl bg-(--mainColor) p-2 overflow-x-scroll">
         <h3 className="font-[logo] font-semibold text-xl mb-2 ">
           Daily Sale Sheet
         </h3>
@@ -41,10 +41,10 @@ const Home = () => {
         {/* Options */}
         <div className="w-full flex justify-around items-center">
           <div className="Date flex flex-col justify-center items-center gap-3">
-            <img src={calender} className="w-24" />
+            <img src={calender} className="w-10 md:w-24" />
             <h3
               onClick={() => setfilter("Date")}
-              className="cursor-pointer hover:scale-95 transition-all duration-300 ease-in-out font-[logo] text-2xl rounded-4xl bg-white px-4 py-1 flex justify-center items-center gap-3"
+              className="cursor-pointer hover:scale-95 transition-all duration-300 ease-in-out font-[logo] text-sm md:text-2xl rounded-4xl bg-white px-1 md:px-4 py-1 flex justify-center items-center md:gap-3"
             >
               <input
                 type="date"
@@ -56,10 +56,10 @@ const Home = () => {
           </div>
 
           <div className="Date flex flex-col justify-center items-center gap-3">
-            <img src={easyPaisa} className="w-24" />
+            <img src={easyPaisa} className="w-10 md:w-24" />
             <h3
               onClick={() => setfilterPayment("EasyPaisa")}
-              className="cursor-pointer hover:scale-95 transition-all duration-300 ease-in-out font-[logo] text-2xl rounded-4xl bg-white px-4 py-1 flex justify-center items-center gap-3"
+              className="cursor-pointer hover:scale-95 transition-all duration-300 ease-in-out font-[logo] text-sm md:text-2xl rounded-4xl bg-white px-1 md:px-4 py-1 flex justify-center items-center gap-1 md:gap-3"
             >
               <div
                 className={`${
@@ -71,10 +71,10 @@ const Home = () => {
           </div>
 
           <div className="Cash flex flex-col justify-center items-center gap-3">
-            <img src={cash} className="w-24" />
+            <img src={cash} className="w-10 md:w-24" />
             <h3
               onClick={() => setfilterPayment("Cash")}
-              className="cursor-pointer hover:scale-95 transition-all duration-300 ease-in-out font-[logo] text-2xl rounded-4xl bg-white px-4 py-1 flex justify-center items-center gap-3"
+              className="cursor-pointer hover:scale-95 transition-all duration-300 ease-in-out font-[logo] text-sm md:text-2xl rounded-4xl bg-white px-1 md:px-4 py-1 flex justify-center items-center gap-1  md:gap-3"
             >
               <div
                 className={`${
@@ -93,10 +93,10 @@ const Home = () => {
         <table className="border-collapse border border-gray-300 w-full ">
           <thead className="bg-(--mainColor)/20 font-[logo] ">
             <tr>
-              <th className="border border-gray-300 px-4 py-2 ">Order No</th>
-              <th className="border border-gray-300 px-4 py-2">Date</th>
-              <th className="border border-gray-300 px-4 py-2">Payment</th>
-              <th className="border border-gray-300 px-4 py-2">Amount</th>
+              <th className="border border-gray-300 px-1 md:px-4 py-2 ">Order No</th>
+              <th className="border border-gray-300 px-4 md:px-4 py-2">Date</th>
+              <th className="border border-gray-300 px-4 md:px-4 py-2">Payment</th>
+              <th className="border border-gray-300 px-4 md:px-4 py-2">Amount</th>
             </tr>
           </thead>
 
@@ -113,18 +113,18 @@ const Home = () => {
               )} ${date.getFullYear().toString().slice(-2)}`;
 
               return (
-                <tr className="text-center">
-                  <td className="border border-gray-300 px-4 py-2 ">
+                <tr className="text-center text-sm md:text-xl">
+                  <td className="border border-gray-300 px-1 md:px-4 py-2 ">
                     {item.OrderNumber}
                   </td>
-                  <td className="border border-gray-300 px-4 py-2 ">
+                  <td className="border border-gray-300 px-1 md:px-4 py-2 ">
                     {formattedDate}
                   </td>
-                  <td className="border border-gray-300 px-4 py-2 ">
+                  <td className="border border-gray-300 px-1 md:px-4 py-2 ">
                     {item.Payment}
                   </td>
-                  <td className="border border-gray-300 px-4 py-2 ">
-                    Rs. {item.GrandTotal.toLocaleString()}/-
+                  <td className="border border-gray-300 px-1 md:px-4 py-2 ">
+                    Rs.{item.GrandTotal.toLocaleString()}/-
                   </td>
                 </tr>
               );
