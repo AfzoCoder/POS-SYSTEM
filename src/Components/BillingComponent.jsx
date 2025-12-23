@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { MdDelete } from "react-icons/md"; //delete icon
 import { HiMiniArrowTurnRightDown } from "react-icons/hi2"; //icon
 import { BsPrinter } from "react-icons/bs";
+import easyPaisa from "./../assets/OtherImages/Easypaisa_Logo-removebg-preview.png";
+import cash from "./../assets/OtherImages/cash-removebg-preview.png";
 
 import { IoArrowBackOutline } from "react-icons/io5";
 
@@ -18,7 +20,10 @@ const billingComponent = () => {
   const dispatch = useDispatch();
 
   // for order numbering
-  const [OrderNo, setOrderNo] = useState(1); //delete ❌
+  const [OrderNo, setOrderNo] = useState(1);
+  const [payment, setpayment] = useState("");
+  const [PrintAndSaveBTNS, setPrintAndSaveBTNS] = useState(false); //admin first click Payment then can see these btns
+
   const prevCount = useRef();
   useEffect(() => {
     prevCount.current = OrderNo;
@@ -310,18 +315,62 @@ const billingComponent = () => {
                 }`}</div>
               </div>
 
+              {/* Payment Method div */}
+              <div className="paymentMethod w-full p-2 bg-white rounded-xl mt-4 shadow-xl border flex flex-col justify-around items-start ">
+                <h2 className="font-[logo] font-semibold">Payment Method:</h2>
+
+                <div className="EasyPaisa+Cash w-full flex justify-around items-center ">
+                  {/* easy paisa 1️⃣*/}
+                  <div
+                    className="easypaisa flex justify-center items-center gap-2 cursor-pointer"
+                    onClick={() => {setpayment("EasyPaisa")
+                      setPrintAndSaveBTNS(true)
+                    }}
+                  >
+                    <div
+                      className={`${
+                        payment === "EasyPaisa" ? "bg-green-400" : ""
+                      } w-4 h-4 rounded-full  border "`}
+                    ></div>
+                    <button className="flex justify-center items-center">
+                      <img src={easyPaisa} alt="" className="w-6" />
+                      <h4>EasyPaisa</h4>
+                    </button>
+                  </div>
+
+                  {/* Cash 2️⃣*/}
+                  <div
+                    className="Cash flex justify-center items-center gap-2 cursor-pointer"
+                    onClick={() => {setpayment("Cash")
+                      setPrintAndSaveBTNS(true)
+                    }}
+                  >
+                    <div
+                      className={`${
+                        payment === "Cash" ? "bg-green-400 " : ""
+                      } w-4 h-4 rounded-full  border "`}
+                    ></div>
+                    <button className="flex justify-center items-center">
+                      <img src={cash} alt="" className="w-8" />
+                      <h4>Cash</h4>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
               {/* Thank you */}
-              <h2 className=" mt-18 font-[logo] font-semibold">
+              <h2 className=" mt-13 font-[logo] font-semibold">
                 Thank you for your Order! 😊
               </h2>
 
-              {/* print/  back */}
-              <div className=" w-full  mt-10 justify-around items-center flex">
+              {/* print/  back btn */}
+              <div className={` ${PrintAndSaveBTNS? 'flex' : 'hidden'} Print/SaveButtons w-full  mt-5 justify-around items-center `}>
                 <button
                   onClick={() => {
                     setshowBill(false);
-                    dispatch(OrderCompleted({Discount, GrandTotal}));
+                    dispatch(OrderCompleted({ Discount, GrandTotal, payment }));
                     dispatch(OrderNumberIncreaser());
+                    setpayment('')
                   }}
                   className="PrintHide active:scale-95 px-4 py-2 flex flex-col justify-center items-center rounded-xl hover:bg-red-400 hover:text-white cursor-pointer border"
                 >
@@ -329,12 +378,14 @@ const billingComponent = () => {
                   Save & Back
                 </button>
 
+                {/* Print btn */}
                 <button
                   onClick={() => {
                     printFunction();
-                    dispatch(OrderCompleted({Discount, GrandTotal}));
+                    dispatch(OrderCompleted({ Discount, GrandTotal, payment }));
                     setshowBill(false);
                     dispatch(OrderNumberIncreaser());
+                    setpayment('')
                   }}
                   className="PrintHide active:scale-95 px-4 py-2 flex flex-col justify-center items-center rounded-xl hover:bg-green-400 hover:text-white cursor-pointer border "
                 >

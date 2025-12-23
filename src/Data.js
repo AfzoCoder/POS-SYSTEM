@@ -19,7 +19,7 @@ import Dynamite from "./assets/FoodImages/Burgers/DynamiteBurger.png";
 import Patty from "./assets/FoodImages/Burgers/pattyBurger.png";
 import EggBurger from "./assets/FoodImages/Burgers/EggBurger.png";
 import PizzaBurger from "./assets/FoodImages/Burgers/PIZZABURGER.png";
-import Zinger from "./assets/FoodImages/Burgers/zinger.png";
+import Zinger from "./assets/FoodImages/Burgers/Zinger.png";
 import HalalSpl from "./assets/FoodImages/Burgers/HALABSPL.jpg";
 
 //Fries
@@ -52,7 +52,7 @@ import HalabSpecial from "./assets/FoodImages/Pizzas/HALABSPL-removebg-preview.p
 
 //Student Deals
 import StudentDealOne from "./assets/FoodImages/Deals/Std1.png";
-import StudentDealTwo from "./assets/FoodImages/Deals/Std-2.png";
+import StudentDealTwo from "./assets/FoodImages/Deals/Std2.png";
 import StudentDealThree from "./assets/FoodImages/Deals/Std-3.png";
 
 // Family Box Deals
@@ -64,7 +64,7 @@ import FamilyBoxThree from "./assets/FoodImages/Deals/box3.png";
 // MidNight Deals
 import MidnightOne from "./assets/FoodImages/Deals/mid1.png";
 import MidnightTwo from "./assets/FoodImages/Deals/mid2.png";
-import MidnightThree from "./assets/FoodImages/Deals/box3.png"
+import MidnightThree from "./assets/FoodImages/Deals/mid3.png"
 
 let allItemsData = [
   //--------------pizza-------------------

@@ -48,7 +48,11 @@ input[type=number] {
     display: flex;
     flex-direction: column;
   }
-}
+  .paymentMethod{
+    visibility: hidden;
+  }  
+  }
+
 
 /* width of scrollbar */
 ::-webkit-scrollbar {

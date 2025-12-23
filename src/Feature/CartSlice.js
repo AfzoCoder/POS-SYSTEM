@@ -40,15 +40,14 @@ const CartSlice = createSlice({
       localStorage.setItem("cartArray", JSON.stringify(state.CartArray));
     },
     OrderCompleted: (state, action) => {
-      
       state.Orders.push({
         OrderNumber: state.OrderNumber,
-        CartItems:[...state.CartArray],
-        Discount:action.payload.Discount,
-        GrandTotal:action.payload.GrandTotal,
-        CreatedAt: Date.now()
-      }
-      );
+        CartItems: [...state.CartArray],
+        Discount: action.payload.Discount,
+        GrandTotal: action.payload.GrandTotal,
+        Payment: action.payload.payment,
+        CreatedAt: Date.now(),
+      });
 
       state.CartArray = [];
       localStorage.setItem("cartArray", JSON.stringify(state.CartArray));
@@ -56,16 +55,17 @@ const CartSlice = createSlice({
       localStorage.setItem("Orders", JSON.stringify(state.Orders));
     },
     OrderNumberIncreaser: (state, action) => {
-      console.log('increasing ordering');
-      
-      state.OrderNumber = state.OrderNumber+1;
-      console.log(state.OrderNumber); //DELETE
-      
+      state.OrderNumber = state.OrderNumber + 1;
 
       localStorage.setItem("OrderNumber", JSON.stringify(state.OrderNumber));
     },
   },
 });
 
-export const { addInCart, deleteFromCart, OrderCompleted, OrderNumberIncreaser } = CartSlice.actions;
+export const {
+  addInCart,
+  deleteFromCart,
+  OrderCompleted,
+  OrderNumberIncreaser,
+} = CartSlice.actions;
 export default CartSlice.reducer;

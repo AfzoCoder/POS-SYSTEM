@@ -76,7 +76,10 @@ const PreviousOrders = () => {
                 {/* details ⬇️*/}
                 <div className={`${showDetails ? '' : 'hidden' } rounded-xl  px-2  w-full p-2"`}>
                   {/* time */}
-                  <h4>{formattedDate}</h4>
+                  <h4>{formattedDate}
+                    <h4 className="text-green-400 text-xs font-bold">{order.Payment}</h4>
+                    
+                  </h4>
 
                   {/* table heading */}
                   <div className=" heading flex gap-2 justify-between items-center font-bold">
