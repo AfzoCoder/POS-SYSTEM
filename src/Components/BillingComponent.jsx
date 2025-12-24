@@ -248,7 +248,7 @@ const billingComponent = () => {
 
               <div className=" heading flex justify-between items-center font-bold">
                 <h3 className="flex-4">Item</h3>
-                <h3 className="flex-3">Quantity</h3>
+                <h3 className="flex-3">Qty</h3>
                 <h3 className="flex-3">Unit Price</h3>
                 <h3 className="flex-3">Total</h3>
               </div>
@@ -261,7 +261,7 @@ const billingComponent = () => {
                   return (
                     <div className="flex border-b">
                       {/* item name */}
-                      <h3 className="flex-4">
+                      <h3 className="flex-4 leading-tight">
                         {item.type === "Pizza"
                           ? item.name + "(" + item.selectedSize + ")"
                           : item.type === "ColdDrink"
@@ -296,18 +296,19 @@ const billingComponent = () => {
               {/* TOTAL */}
               <div className=" flex justify-between items-center text-xl font-bold">
                 <div className="flex-4"></div>
-                <div className="flex-3"></div>
-                <div className="relative flex-3 border-b ">
+                {/* <div className="flex-3"></div> */}
+                <div className="relative flex-6 border-b ">
                   TOTAL <br />
                   {/* Discount */}
                   <h4
                     className={`${
                       Discount ? "absolute left-0 top-8" : "hidden"
-                    } flex-3 flex-nowrap text-xs`}
+                    } flex  flex-nowrap text-xs`}
                   >
                     Discount: {Discount}%
                   </h4>
                 </div>
+
                 <div className="flex-3 font-[Muck] border-b">{`${
                   Discount
                     ? Math.floor(GrandTotal - (GrandTotal / 100) * Discount)
@@ -315,16 +316,17 @@ const billingComponent = () => {
                 }`}</div>
               </div>
 
-              {/* Payment Method div */}
-              <div className="paymentMethod w-full p-2 bg-white rounded-xl mt-4 shadow-xl border flex flex-col justify-around items-start ">
+              {/* Payment Method div---------------- */}
+              <div className="paymentMethod w-full p-2 bg-white rounded-xl mt-6 shadow-xl border flex flex-col justify-around items-start ">
                 <h2 className="font-[logo] font-semibold">Payment Method:</h2>
 
                 <div className="EasyPaisa+Cash w-full flex justify-around items-center ">
                   {/* easy paisa 1️⃣*/}
                   <div
                     className="easypaisa flex justify-center items-center gap-2 cursor-pointer"
-                    onClick={() => {setpayment("EasyPaisa")
-                      setPrintAndSaveBTNS(true)
+                    onClick={() => {
+                      setpayment("EasyPaisa");
+                      setPrintAndSaveBTNS(true);
                     }}
                   >
                     <div
@@ -341,8 +343,9 @@ const billingComponent = () => {
                   {/* Cash 2️⃣*/}
                   <div
                     className="Cash flex justify-center items-center gap-2 cursor-pointer"
-                    onClick={() => {setpayment("Cash")
-                      setPrintAndSaveBTNS(true)
+                    onClick={() => {
+                      setpayment("Cash");
+                      setPrintAndSaveBTNS(true);
                     }}
                   >
                     <div
@@ -364,13 +367,17 @@ const billingComponent = () => {
               </h2>
 
               {/* print/  back btn */}
-              <div className={` ${PrintAndSaveBTNS? 'flex' : 'hidden'} Print/SaveButtons w-full  mt-5 justify-around items-center `}>
+              <div
+                className={` ${
+                  PrintAndSaveBTNS ? "flex" : "hidden"
+                } Print/SaveButtons w-full  mt-5 justify-around items-center `}
+              >
                 <button
                   onClick={() => {
                     setshowBill(false);
                     dispatch(OrderCompleted({ Discount, GrandTotal, payment }));
                     dispatch(OrderNumberIncreaser());
-                    setpayment('')
+                    setpayment("");
                   }}
                   className="PrintHide active:scale-95 px-4 py-2 flex flex-col justify-center items-center rounded-xl hover:bg-red-400 hover:text-white cursor-pointer border"
                 >
@@ -385,7 +392,7 @@ const billingComponent = () => {
                     dispatch(OrderCompleted({ Discount, GrandTotal, payment }));
                     setshowBill(false);
                     dispatch(OrderNumberIncreaser());
-                    setpayment('')
+                    setpayment("");
                   }}
                   className="PrintHide active:scale-95 px-4 py-2 flex flex-col justify-center items-center rounded-xl hover:bg-green-400 hover:text-white cursor-pointer border "
                 >

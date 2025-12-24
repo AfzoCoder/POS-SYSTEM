@@ -111,7 +111,7 @@ const PreviousOrders = () => {
                       >
                         <h3 className="flex-4 text-gray-400 font-light">
                           {
-                            <h3 className="flex-4">
+                            <h3 className="flex-4 border-b-[0.1px] border-gray-300">
                               {singleitem.type === "Pizza"
                                 ? singleitem.name +
                                   "(" +
@@ -154,7 +154,7 @@ const PreviousOrders = () => {
                     );
                   })}
 
-                  <hr />
+                  <hr className="mt-2" />
 
                   {/*Grand TOTAL */}
                   <div className=" flex justify-between items-center text-xl font-bold">

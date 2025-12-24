@@ -41,7 +41,9 @@ const Home = () => {
         {/* Options */}
         <div className="w-full flex justify-around items-center">
           <div className="Date flex flex-col justify-center items-center gap-3">
-            <img src={calender} className="w-10 md:w-24" />
+            <img src={calender} className="w-10 md:w-24 cursor-pointer" title="show all orders" 
+            onClick={()=> setfilterPayment('')
+            }/>
             <h3
               onClick={() => setfilter("Date")}
               className="cursor-pointer hover:scale-95 transition-all duration-300 ease-in-out font-[logo] text-sm md:text-2xl rounded-4xl bg-white px-1 md:px-4 py-1 flex justify-center items-center md:gap-3"

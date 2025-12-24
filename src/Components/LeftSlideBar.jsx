@@ -4,11 +4,15 @@ import { HiOutlineInbox } from "react-icons/hi2"; //order icon
 import { CiBoxList } from "react-icons/ci"; //icon
 import { BsTelephone } from "react-icons/bs"; //phone icon
 import { IoLocationOutline } from "react-icons/io5"; //location icon
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate} from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const leftSlideBar = () => {
   const navigate = useNavigate();
+  
+  const location = useLocation()
+  
+  
 
   const allOrders = useSelector((state) => state.cart.Orders);
 
@@ -37,9 +41,10 @@ const leftSlideBar = () => {
             <div
               onClick={() => navigate(menuItem.Navigateto)}
               key={menuItem.name}
-              className="relative hover:bg-amber-300 px-3 md:px-6 py-2 rounded-xl text-md md:text-xl cursor-pointer flex-col md:flex-row gap-5 justify-center items-center "
+              className={`${location.pathname === menuItem.Navigateto ? 'text-red-400' : ''} relative hover:bg-amber-300 px-3 md:px-6 py-2 rounded-xl text-md md:text-xl cursor-pointer flex-col md:flex-row gap-5 justify-center items-center`}
             >
               {menuItem.icon} {menuItem.name}
+
               {menuItem.name === "Order History" && (
                 <h2 className="absolute right-3 top-3 w-6 h-6 flex justify-center items-center text-xs bg-red-500 text-white rounded-full">
                   {allOrders.length}
