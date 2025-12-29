@@ -6,6 +6,8 @@ import { BsTelephone } from "react-icons/bs"; //phone icon
 import { IoLocationOutline } from "react-icons/io5"; //location icon
 import { useLocation, useNavigate} from "react-router-dom";
 import { useSelector } from "react-redux";
+import baloonLogo from "../assets/OtherImages/halabLogo baloon.png";
+
 
 const leftSlideBar = () => {
   const navigate = useNavigate();
@@ -30,8 +32,9 @@ const leftSlideBar = () => {
     <div className=" relative md:min-h-screen md:scale-100 w-full md:w-[18%] flex flex-col justify-start items-center md:px-6 py-4 md:py-0 bg-white rounded-xl">
       {/* LOGO */}
       <div className="logo my-2 md:my-3 font-[logo] font-semibold text-lg md:text-2xl">
-        Halab Kitchen
-        <span className="text-3xl text-(--mainColor)">.</span>
+       <img src={baloonLogo}  className="w-30 md:w-59" />
+        {/* Halab Kitchen */}
+        {/* <span className="text-3xl text-(--mainColor)">.</span> */}
       </div>
 
       {/* DESHBOARD */}

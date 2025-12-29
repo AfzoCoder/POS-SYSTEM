@@ -12,16 +12,21 @@ import {
   deleteFromCart,
   OrderCompleted,
   OrderNumberIncreaser,
+  addRemarks,
 } from "../Feature/CartSlice";
 
 const billingComponent = () => {
   const CartItems = useSelector((state) => state.cart.CartArray);
   const OrderNumber = useSelector((state) => state.cart.OrderNumber);
+  const Remarks = useSelector((state) => state.cart.Remarks);
+
   const dispatch = useDispatch();
 
   // for order numbering
   const [OrderNo, setOrderNo] = useState(1);
   const [payment, setpayment] = useState("");
+  const [AdminRemarks, setAdminRemarks] = useState("");
+
   const [PrintAndSaveBTNS, setPrintAndSaveBTNS] = useState(false); //admin first click Payment then can see these btns
 
   const prevCount = useRef();
@@ -43,7 +48,6 @@ const billingComponent = () => {
   const discountArray = [0, 5, 10, 15];
   const [showDiscount, setshowDiscount] = useState(false);
   const [Discount, setDiscount] = useState(0);
-
   const [showBill, setshowBill] = useState(false);
 
   // print Handler
@@ -182,15 +186,26 @@ const billingComponent = () => {
             </div>
           </div>
 
+          {/* Remarks textArea */}
+          <div className=" w-full text-lg">
+            <textarea
+              value={AdminRemarks}
+              onChange={(e) => setAdminRemarks(e.target.value)}
+              placeholder="Remarks or Phone Number..."
+              className="remakrsInput min-h-12 outline-0 mt-5 w-full p-2 rounded-lg border text-wrap"
+            ></textarea>
+          </div>
+
           <button
             onClick={() => {
               if (CartItems.length < 1) {
                 return;
               } else {
                 setshowBill(true);
+                dispatch(addRemarks(AdminRemarks));
               }
             }}
-            className="w-full bg-(--mainColor) px-4 py-2 rounded-xl text-white cursor-pointer mt-10 hover:shadow-2xl active:scale-95 hover:bg-amber-300"
+            className="w-full bg-(--mainColor) px-4 py-2 rounded-xl text-white cursor-pointer mt-3 hover:shadow-2xl active:scale-95 hover:bg-amber-300"
           >
             Done
           </button>
@@ -375,9 +390,12 @@ const billingComponent = () => {
                 <button
                   onClick={() => {
                     setshowBill(false);
-                    dispatch(OrderCompleted({ Discount, GrandTotal, payment }));
+                    dispatch(
+                      OrderCompleted({ Discount, GrandTotal, payment, Remarks })
+                    );
                     dispatch(OrderNumberIncreaser());
                     setpayment("");
+                    setAdminRemarks(""); //clearing Admin remarks after submit order
                   }}
                   className="PrintHide active:scale-95 px-4 py-2 flex flex-col justify-center items-center rounded-xl hover:bg-red-400 hover:text-white cursor-pointer border"
                 >
@@ -389,10 +407,13 @@ const billingComponent = () => {
                 <button
                   onClick={() => {
                     printFunction();
-                    dispatch(OrderCompleted({ Discount, GrandTotal, payment }));
+                    dispatch(
+                      OrderCompleted({ Discount, GrandTotal, payment, Remarks })
+                    );
                     setshowBill(false);
                     dispatch(OrderNumberIncreaser());
                     setpayment("");
+                    setAdminRemarks(""); //clearing Admin remarks after submit order
                   }}
                   className="PrintHide active:scale-95 px-4 py-2 flex flex-col justify-center items-center rounded-xl hover:bg-green-400 hover:text-white cursor-pointer border "
                 >

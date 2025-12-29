@@ -10,6 +10,7 @@ const CartSlice = createSlice({
   name: "cart",
   initialState: {
     CartArray: getLocalStorage,
+    Remarks:'',
     Orders: OrdersgetLocalStorage,
     OrderNumber: OrderNumbergetLocalStorage,
   },
@@ -47,9 +48,10 @@ const CartSlice = createSlice({
         GrandTotal: action.payload.GrandTotal,
         Payment: action.payload.payment,
         CreatedAt: Date.now(),
-      });
+        Remarks: action.payload.Remarks});
 
-      state.CartArray = [];
+      state.CartArray = []; //empty the cart after order submit
+      state.Remarks = '', // empty the Remarks after order submit
       localStorage.setItem("cartArray", JSON.stringify(state.CartArray));
 
       localStorage.setItem("Orders", JSON.stringify(state.Orders));
@@ -59,6 +61,9 @@ const CartSlice = createSlice({
 
       localStorage.setItem("OrderNumber", JSON.stringify(state.OrderNumber));
     },
+    addRemarks:(state, action)=>{
+      state.Remarks = action.payload
+    }
   },
 });
 
@@ -67,5 +72,6 @@ export const {
   deleteFromCart,
   OrderCompleted,
   OrderNumberIncreaser,
+  addRemarks
 } = CartSlice.actions;
 export default CartSlice.reducer;

@@ -30,7 +30,6 @@ const placeOrder = () => {
   ];
 
   const [filter, setfilter] = useState("");
-  console.log(filter); //delete
 
   // filter handler
   let filtering = () => {

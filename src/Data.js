@@ -26,6 +26,10 @@ import HalalSpl from "./assets/FoodImages/Burgers/HALABSPL.jpg";
 import RegularFries from "./assets/FoodImages/Fries/plan_fries-removebg-preview.png";
 import LoadedFires from "./assets/FoodImages/Fries/loaded_Fries-removebg-preview.png";
 
+//Fries
+import Pasta from "./assets/FoodImages/Pasta/pasta-removebg-preview.png";
+
+
 //Paratha Rolls
 import ChickenRoll from "./assets/FoodImages/ParathaRolls/chickenRoll.jpg";
 import zingerROLL from "./assets/FoodImages/ParathaRolls/zingerROLL.jpg";
@@ -238,10 +242,10 @@ let allItemsData = [
   },
   //-------------------Pasta------------------
   {
-    img: "https://tse4.mm.bing.net/th/id/OIP.okYsLEIwf-xWI_Tt16CruwHaE8?pid=Api&P=0&h=220",
+    img: Pasta,
     name: "pasta",
     type: "Pasta",
-    price: 700,
+    price: 600,
   },
 
   //-------------------Rolls------------------

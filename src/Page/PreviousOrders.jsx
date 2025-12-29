@@ -5,22 +5,16 @@ import { IoIosArrowDown } from "react-icons/io"; //down arrow icon
 
 const PreviousOrders = () => {
   const allOrdersFromRedux = useSelector((state) => state.cart.Orders);
+  console.log(allOrdersFromRedux);
 
   const [SearchInput, setSearchInput] = useState("");
 
+  const allOrders =
+    SearchInput.length > 0
+      ? allOrdersFromRedux.filter((item) => item.OrderNumber == SearchInput)
+      : allOrdersFromRedux;
 
-  const allOrders =  SearchInput.length > 0
-    ? allOrdersFromRedux.filter(
-        (item) => item.OrderNumber == SearchInput
-      )
-    : allOrdersFromRedux;
-
-  
-  
-
-  const [showDetails, setshowDetails] = useState(false)
-
-
+  const [showDetails, setshowDetails] = useState(false);
 
   return (
     <div className="w-full md:full px-3 h-full ">
@@ -32,7 +26,7 @@ const PreviousOrders = () => {
           <FiSearch />
           <input
             onChange={(e) => setSearchInput(e.target.value)}
-            type= 'number'
+            type="number"
             value={SearchInput}
             className="outline-0 w-full"
             placeholder="Search Order Number . . ."
@@ -58,10 +52,12 @@ const PreviousOrders = () => {
               { month: "short" }
             )} ${date.getFullYear().toString().slice(-2)}`;
             const GrandTotalOfSingleClient = "";
-            
 
             return (
-              <div key={index} className="rounded-xl inline-block h-auto  px-4 py-2 bg-white hover:shadow-2xl z-10 border-2 ">
+              <div
+                key={index}
+                className="rounded-xl max-w-70 overflow-hidden inline-block h-auto  px-4 py-2 bg-white hover:shadow-2xl z-10 border-2 "
+              >
                 {/* Order No div ⬆️*/}
                 <div className="OrderNumberDiv  flex justify-center items-center gap-3 ">
                   <h3
@@ -70,15 +66,26 @@ const PreviousOrders = () => {
                   >
                     {order.OrderNumber}
                   </h3>
-                  <IoIosArrowDown onClick={()=>setshowDetails(prev => !prev)} className={`${showDetails? 'rotate-x-180' : '' } text-2xl cursor-pointer hover:scale-120 transition-all duration-300 ease-in-out`} />
+                  <IoIosArrowDown
+                    onClick={() => setshowDetails((prev) => !prev)}
+                    className={`${
+                      showDetails ? "rotate-x-180" : ""
+                    } text-2xl cursor-pointer hover:scale-120 transition-all duration-300 ease-in-out`}
+                  />
                 </div>
 
                 {/* details ⬇️*/}
-                <div className={`${showDetails ? '' : 'hidden' } rounded-xl  px-2  w-full p-2"`}>
+                <div
+                  className={`${
+                    showDetails ? "" : "hidden"
+                  } rounded-xl  px-2  w-full p-2"`}
+                >
                   {/* time */}
-                  <h4>{formattedDate}
-                    <h4 className="text-green-400 text-xs font-bold">{order.Payment}</h4>
-                    
+                  <h4>
+                    {formattedDate}
+                    <h4 className="text-green-400 text-xs font-bold">
+                      {order.Payment}
+                    </h4>
                   </h4>
 
                   {/* table heading */}
@@ -166,10 +173,8 @@ const PreviousOrders = () => {
                       Discount: {order.Discount}%
                     </div>
                     <div className="flex-3 text-xs"></div>
-                    
-                    <div className="relative flex-3 border-b ">
-                      TOTAL 
-                    </div>
+
+                    <div className="relative flex-3 border-b ">TOTAL</div>
 
                     <div className="flex-3 font-[Muck] border-b">{`${
                       order.Discount
@@ -179,8 +184,17 @@ const PreviousOrders = () => {
                           )
                         : Math.floor(order.GrandTotal).toLocaleString()
                     }`}</div>
-                    
+
                   </div>
+
+                    {/* AdminRemarks */}
+                    <div className=" w-full text-wrap ">
+                      <span className="mr-2 text-gray-500 font-semibold text-sm">Remarks:</span>
+
+                      <h4 className="text-wrap">{order.Remarks? order.Remarks : ''}</h4>
+                    </div>
+
+
                 </div>
               </div>
             );
