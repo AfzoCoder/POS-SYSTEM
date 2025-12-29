@@ -149,10 +149,10 @@ let allItemsData = [
     img4: DewOneAndHalfLtr,
     name: "Dew",
     type: "ColdDrink",
-    NR: 60,
-    0.5: 90,
-    "1L": 150,
-    1.5: 200,
+    NR: 100,
+    0.5: 130,
+    "1L": 170,
+    1.5: 220,
   },
 
   // 7up pic
@@ -163,10 +163,10 @@ let allItemsData = [
     img4: sevenUpOneAndHalfLtr,
     name: "7Up",
     type: "ColdDrink",
-    NR: 60,
-    0.5: 90,
-    "1L": 150,
-    1.5: 200,
+   NR: 100,
+    0.5: 130,
+    "1L": 170,
+    1.5: 220,
   },
 
   // pepsi pic
@@ -177,10 +177,10 @@ let allItemsData = [
     img4: pepsiOneAndHalfLtr,
     name: "Pepsi",
     type: "ColdDrink",
-    NR: 60,
-    0.5: 90,
-    "1L": 150,
-    1.5: 200,
+     NR: 100,
+    0.5: 130,
+    "1L": 170,
+    1.5: 220,
   },
   //----------------Burgers-----------------
   //zinger Burger
