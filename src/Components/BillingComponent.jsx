@@ -19,6 +19,7 @@ const billingComponent = () => {
   const CartItems = useSelector((state) => state.cart.CartArray);
   const OrderNumber = useSelector((state) => state.cart.OrderNumber);
   const Remarks = useSelector((state) => state.cart.Remarks);
+  console.log(Remarks);
 
   const dispatch = useDispatch();
 
@@ -227,8 +228,7 @@ const billingComponent = () => {
               title="close"
               className="absolute PrintHide right-6 top-1  cursor-pointer hover:text-red-500  text-2xl text-gray-500 "
             >
-              {" "}
-              X{" "}
+              X
             </h1>
 
             <div className=" flex  justify-around items-center">
@@ -309,7 +309,7 @@ const billingComponent = () => {
               </div>
 
               {/* TOTAL */}
-              <div className=" flex justify-between items-center text-xl font-bold">
+              <div className=" bg-emerald-500 flex justify-between items-center text-xl font-bold">
                 <div className="flex-4"></div>
                 {/* <div className="flex-3"></div> */}
                 <div className="relative flex-6 border-b ">
@@ -329,6 +329,12 @@ const billingComponent = () => {
                     ? Math.floor(GrandTotal - (GrandTotal / 100) * Discount)
                     : Math.floor(GrandTotal).toLocaleString()
                 }`}</div>
+              </div>
+
+              {/* Remarks */}
+              <div className="w-full text-wrap">
+                <h2 className="text-2xl">Remarks:</h2>
+                <h4>{Remarks}</h4>
               </div>
 
               {/* Payment Method div---------------- */}
