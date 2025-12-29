@@ -19,7 +19,6 @@ const billingComponent = () => {
   const CartItems = useSelector((state) => state.cart.CartArray);
   const OrderNumber = useSelector((state) => state.cart.OrderNumber);
   const Remarks = useSelector((state) => state.cart.Remarks);
-  console.log(Remarks);
 
   const dispatch = useDispatch();
 
@@ -49,7 +48,7 @@ const billingComponent = () => {
   const discountArray = [0, 5, 10, 15];
   const [showDiscount, setshowDiscount] = useState(false);
   const [Discount, setDiscount] = useState(0);
-  const [showBill, setshowBill] = useState(false);
+  const [showBill, setshowBill] = useState(true); //cahange it . make it true
 
   // print Handler
   let printFunction = () => {
@@ -309,7 +308,7 @@ const billingComponent = () => {
               </div>
 
               {/* TOTAL */}
-              <div className=" bg-emerald-500 flex justify-between items-center text-xl font-bold">
+              <div className="  flex justify-between items-center text-xl font-bold">
                 <div className="flex-4"></div>
                 {/* <div className="flex-3"></div> */}
                 <div className="relative flex-6 border-b ">
@@ -333,8 +332,8 @@ const billingComponent = () => {
 
               {/* Remarks */}
               <div className="w-full text-wrap">
-                <h2 className="text-2xl">Remarks:</h2>
-                <h4>{Remarks}</h4>
+                <h2 className="text-sm font-bold text-green-700">NOTE:</h2>
+                <h4 className="text-wrap w-full">{Remarks}</h4>
               </div>
 
               {/* Payment Method div---------------- */}
