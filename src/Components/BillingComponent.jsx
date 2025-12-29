@@ -48,7 +48,7 @@ const billingComponent = () => {
   const discountArray = [0, 5, 10, 15];
   const [showDiscount, setshowDiscount] = useState(false);
   const [Discount, setDiscount] = useState(0);
-  const [showBill, setshowBill] = useState(true); //cahange it . make it true
+  const [showBill, setshowBill] = useState(false); 
 
   // print Handler
   let printFunction = () => {
