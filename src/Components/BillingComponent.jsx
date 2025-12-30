@@ -15,6 +15,19 @@ import {
   addRemarks,
 } from "../Feature/CartSlice";
 
+// Sound effects 🛎️
+const bellSound = new Audio("/public/Sounds/bill.mp3");
+const deleteSound = new Audio("/public/Sounds/delete.mp3");
+
+const playBell = () => {
+  bellSound.currentTime = 0;
+  bellSound.play();
+};
+const playDelete = () => {
+  deleteSound.currentTime = 0;
+  deleteSound.play();
+};
+
 const billingComponent = () => {
   const CartItems = useSelector((state) => state.cart.CartArray);
   const OrderNumber = useSelector((state) => state.cart.OrderNumber);
@@ -48,7 +61,7 @@ const billingComponent = () => {
   const discountArray = [0, 5, 10, 15];
   const [showDiscount, setshowDiscount] = useState(false);
   const [Discount, setDiscount] = useState(0);
-  const [showBill, setshowBill] = useState(false); 
+  const [showBill, setshowBill] = useState(false);
 
   // print Handler
   let printFunction = () => {
@@ -86,7 +99,10 @@ const billingComponent = () => {
                     {/* delete Handler  ---------------*/}
                     <div
                       className="delte"
-                      onClick={() => dispatch(deleteFromCart(item))}
+                      onClick={() => {
+                        playDelete()
+                        dispatch(deleteFromCart(item));
+                      }}
                     >
                       <MdDelete
                         className="text-red-500/50 hover:text-red-500 cursor-pointer"
@@ -394,6 +410,7 @@ const billingComponent = () => {
               >
                 <button
                   onClick={() => {
+                    playBell();
                     setshowBill(false);
                     dispatch(
                       OrderCompleted({ Discount, GrandTotal, payment, Remarks })

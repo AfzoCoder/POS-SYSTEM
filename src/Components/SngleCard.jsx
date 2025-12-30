@@ -12,21 +12,40 @@ const SingleCard = ({ data }) => {
   const DrinkSizes = ["NR", "0.5", "1L", "1.5"];
   const [selectedDrinkSize, setselectedDrinkSize] = useState("NR");
 
+  // Sound effects 🛎️
+  const clickSound = new Audio("/public/Sounds/click.mp3");
+
+  const playClick = () => {
+    clickSound.currentTime = 0;
+    clickSound.play();
+  };
+
   return (
     <div className="relative rounded-xl  flex flex-col justify-center items-center  active:scale-95 p-1 bg-white hover:shadow-2xl ">
       {/* price - (absolute position) */}
       <h2 className="absolute text-xs top-2 rounded-r-xl left-0 bg-red-400 text-white px-1">
-        {data.type === "Pizza" ? data[selectedSize]   : data.type === 'ColdDrink' ? data[selectedDrinkSize] : data.price}/-
+        {data.type === "Pizza"
+          ? data[selectedSize]
+          : data.type === "ColdDrink"
+          ? data[selectedDrinkSize]
+          : data.price}
+        /-
       </h2>
 
       {/*img div  */}
       <div className="flex justify-center items-center w-30 h-30">
         <img
-          src={data.type === 'ColdDrink' && selectedDrinkSize == 'NR' ? data.img 
-            : data.type === 'ColdDrink' && selectedDrinkSize == '0.5' ? data.img2 
-            : data.type === 'ColdDrink' && selectedDrinkSize == '1' ? data.img3 
-            : data.type === 'ColdDrink' && selectedDrinkSize == '1.5' ? data.img4 
-            :data.img}
+          src={
+            data.type === "ColdDrink" && selectedDrinkSize == "NR"
+              ? data.img
+              : data.type === "ColdDrink" && selectedDrinkSize == "0.5"
+              ? data.img2
+              : data.type === "ColdDrink" && selectedDrinkSize == "1"
+              ? data.img3
+              : data.type === "ColdDrink" && selectedDrinkSize == "1.5"
+              ? data.img4
+              : data.img
+          }
           className=" bg-[#ced4da]/50 rounded-xl w-full h-full object-fit "
         />
       </div>
@@ -35,12 +54,9 @@ const SingleCard = ({ data }) => {
 
       {/* Controllers buttons */}
       <div className="w-full flex gap-1 justify-around items-center text-sm">
-       
-       
         {/* PIZZA LOGIC */}
         {data.type === "Pizza" &&
           sizes.map((size, index) => {
-
             if (!(size in data)) return null; // ⬅️ skip if key not exists
             return (
               <span
@@ -51,7 +67,6 @@ const SingleCard = ({ data }) => {
               >
                 {size}
               </span>
-              
             );
           })}
 
@@ -95,7 +110,12 @@ const SingleCard = ({ data }) => {
 
       {/* ADD Btn */}
       <button
-        onClick={() => dispatch(addInCart({ ...data, quantity, selectedSize, selectedDrinkSize }))}
+        onClick={() => {
+          dispatch(
+            addInCart({ ...data, quantity, selectedSize, selectedDrinkSize })
+          );
+          playClick(); // sound effect of click
+        }}
         className="rounded-xl ml-2 cursor-pointer mt-2 px-8 py-1 font-semibold bg-orange-500 hover:bg-orange-400 text-white border-2"
       >
         Add
