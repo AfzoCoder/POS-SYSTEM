@@ -16,8 +16,8 @@ import {
 } from "../Feature/CartSlice";
 
 // Sound effects 🛎️
-const bellSound = new Audio("/public/Sounds/bill.mp3");
-const deleteSound = new Audio("/public/Sounds/delete.mp3");
+const bellSound = new Audio("/Sounds/bill.mp3");
+const deleteSound = new Audio("/Sounds/delete.mp3");
 
 const playBell = () => {
   bellSound.currentTime = 0;

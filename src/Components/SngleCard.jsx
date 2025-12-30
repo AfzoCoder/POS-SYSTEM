@@ -13,7 +13,7 @@ const SingleCard = ({ data }) => {
   const [selectedDrinkSize, setselectedDrinkSize] = useState("NR");
 
   // Sound effects 🛎️
-  const clickSound = new Audio("/public/Sounds/click.mp3");
+  const clickSound = new Audio("/Sounds/click.mp3");
 
   const playClick = () => {
     clickSound.currentTime = 0;
