@@ -18,7 +18,6 @@ import {
 // Sound effects 🛎️
 const bellSound = new Audio("/Sounds/bill.mp3");
 const deleteSound = new Audio("/Sounds/delete.mp3");
-
 const playBell = () => {
   bellSound.currentTime = 0;
   bellSound.play();
@@ -28,7 +27,7 @@ const playDelete = () => {
   deleteSound.play();
 };
 
-const billingComponent = () => {
+const BillingComponent = () => {
   const CartItems = useSelector((state) => state.cart.CartArray);
   const OrderNumber = useSelector((state) => state.cart.OrderNumber);
   const Remarks = useSelector((state) => state.cart.Remarks);
@@ -36,16 +35,16 @@ const billingComponent = () => {
   const dispatch = useDispatch();
 
   // for order numbering
-  const [OrderNo, setOrderNo] = useState(1);
+  // const [OrderNo, setOrderNo] = useState(1);
   const [payment, setpayment] = useState("");
   const [AdminRemarks, setAdminRemarks] = useState("");
 
   const [PrintAndSaveBTNS, setPrintAndSaveBTNS] = useState(false); //admin first click Payment then can see these btns
 
-  const prevCount = useRef();
-  useEffect(() => {
-    prevCount.current = OrderNo;
-  }, [OrderNo]);
+  // const prevCount = useRef();
+  // useEffect(() => {
+  //   prevCount.current = OrderNo;
+  // }, [OrderNo]);
 
   // Grand total with acc
   const GrandTotal = CartItems.reduce(
@@ -96,7 +95,7 @@ const billingComponent = () => {
               {CartItems.map((item) => {
                 return (
                   <div className="w-full py-2 flex  justify-between items-center text-sm">
-                    {/* delete Handler  ---------------*/}
+                    {/* delete Handler 🗑️ ---------------*/}
                     <div
                       className="delte"
                       onClick={() => {
@@ -450,4 +449,4 @@ const billingComponent = () => {
   );
 };
 
-export default billingComponent;
+export default BillingComponent;
