@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { FiSearch } from "react-icons/fi";
 import { IoIosArrowDown } from "react-icons/io"; //down arrow icon
 
 const PreviousOrders = () => {
   const allOrdersFromRedux = useSelector((state) => state.cart.Orders);
-  console.log(allOrdersFromRedux);
 
   const [SearchInput, setSearchInput] = useState("");
 
@@ -14,7 +13,7 @@ const PreviousOrders = () => {
       ? allOrdersFromRedux.filter((item) => item.OrderNumber == SearchInput)
       : allOrdersFromRedux;
 
-  const [showDetails, setshowDetails] = useState(false);
+  const [showDetails, setshowDetails] = useState('');
 
   return (
     <div className="w-full md:full px-3 h-full ">
@@ -46,6 +45,7 @@ const PreviousOrders = () => {
           </div>
         ) : (
           allOrders.map((order, index) => {
+
             const date = new Date(order.CreatedAt);
             const formattedDate = `${date.getDate()} ${date.toLocaleString(
               "default",
@@ -56,7 +56,7 @@ const PreviousOrders = () => {
             return (
               <div
                 key={index}
-                className="rounded-xl max-w-70 overflow-hidden inline-block h-auto  px-4 py-2 bg-white hover:shadow-2xl z-10 border-2 "
+                className="rounded-xl self-start max-w-70 overflow-hidden inline-block h-auto  px-4 py-2 bg-white hover:shadow-2xl z-10 border-2 "
               >
                 {/* Order No div ⬆️*/}
                 <div className="OrderNumberDiv  flex justify-center items-center gap-3 ">
@@ -67,9 +67,10 @@ const PreviousOrders = () => {
                     {order.OrderNumber}
                   </h3>
                   <IoIosArrowDown
-                    onClick={() => setshowDetails((prev) => !prev)}
+                    // onClick={() => setshowDetails((prev) => !prev)}
+                    onClick={() => setshowDetails(showDetails === order.OrderNumber ? '' : order.OrderNumber)}
                     className={`${
-                      showDetails ? "rotate-x-180" : ""
+                      showDetails === order.OrderNumber ? "rotate-x-180" : ""
                     } text-2xl cursor-pointer hover:scale-120 transition-all duration-300 ease-in-out`}
                   />
                 </div>
@@ -77,7 +78,7 @@ const PreviousOrders = () => {
                 {/* details ⬇️*/}
                 <div
                   className={`${
-                    showDetails ? "" : "hidden"
+                    showDetails === order.OrderNumber ? "" : "hidden"
                   } rounded-xl  px-2  w-full p-2"`}
                 >
                   {/* time */}
@@ -118,7 +119,7 @@ const PreviousOrders = () => {
                       >
                         <h3 className="flex-4 text-gray-400 font-light">
                           {
-                            <h3 className="flex-4 border-b-[0.1px] border-gray-300">
+                            <h4 className="flex-4 border-b-[0.1px] border-gray-300">
                               {singleitem.type === "Pizza"
                                 ? singleitem.name +
                                   "(" +
@@ -130,7 +131,7 @@ const PreviousOrders = () => {
                                   singleitem.selectedDrinkSize +
                                   ")"
                                 : singleitem.name}
-                            </h3>
+                            </h4>
                           }
                         </h3>
                         {/* quantity */}

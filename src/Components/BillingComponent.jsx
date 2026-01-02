@@ -87,7 +87,7 @@ const billingComponent = () => {
 
           <div className="theBillingContainer p-2 w-full">
             <h2>
-              Order#
+              Next Order#
               <span className="ml-2 text-red-500">{OrderNumber}</span>
             </h2>
 
