@@ -13,7 +13,8 @@ const PreviousOrders = () => {
       ? allOrdersFromRedux.filter((item) => item.OrderNumber == SearchInput)
       : allOrdersFromRedux;
 
-  const [showDetails, setshowDetails] = useState('');
+  const [showDetails, setshowDetails] = useState([]);
+  console.log(showDetails); //❌
 
   return (
     <div className="w-full md:full px-3 h-full ">
@@ -21,13 +22,13 @@ const PreviousOrders = () => {
       <div className="heading bg-(--mainColor) rounded-xl p-4 flex justify-between">
         <h1 className="font-[logo] font-semibold text-xl mb-2">All Orders</h1>
 
-        <div className=" bg-white px-4 py-2 flex justify-start gap-3 items-center rounded-xl w-2/4">
+        <div className=" bg-white px-4 py-2 flex justify-start gap-3 items-center rounded-xl w-1/4">
           <FiSearch />
           <input
             onChange={(e) => setSearchInput(e.target.value)}
             type="number"
             value={SearchInput}
-            className="outline-0 w-full"
+            className="outline-0 "
             placeholder="Search Order Number . . ."
           />
         </div>
@@ -45,7 +46,6 @@ const PreviousOrders = () => {
           </div>
         ) : (
           allOrders.map((order, index) => {
-
             const date = new Date(order.CreatedAt);
             const formattedDate = `${date.getDate()} ${date.toLocaleString(
               "default",
@@ -54,6 +54,7 @@ const PreviousOrders = () => {
             const GrandTotalOfSingleClient = "";
 
             return (
+              //map returning a div
               <div
                 key={index}
                 className="rounded-xl self-start max-w-70 overflow-hidden inline-block h-auto  px-4 py-2 bg-white hover:shadow-2xl z-10 border-2 "
@@ -68,9 +69,18 @@ const PreviousOrders = () => {
                   </h3>
                   <IoIosArrowDown
                     // onClick={() => setshowDetails((prev) => !prev)}
-                    onClick={() => setshowDetails(showDetails === order.OrderNumber ? '' : order.OrderNumber)}
+                    onClick={() =>
+                      setshowDetails(
+                        (prev) =>
+                          prev.includes(order.OrderNumber)
+                            ? prev.filter((num) => num !== order.OrderNumber) // remove
+                            : [...prev, order.OrderNumber] // add
+                      )
+                    }
                     className={`${
-                      showDetails === order.OrderNumber ? "rotate-x-180" : ""
+                      showDetails.includes(order.OrderNumber)
+                        ? "rotate-x-180"
+                        : ""
                     } text-2xl cursor-pointer hover:scale-120 transition-all duration-300 ease-in-out`}
                   />
                 </div>
@@ -78,7 +88,7 @@ const PreviousOrders = () => {
                 {/* details ⬇️*/}
                 <div
                   className={`${
-                    showDetails === order.OrderNumber ? "" : "hidden"
+                    showDetails.includes(order.OrderNumber) ? "" : "hidden"
                   } rounded-xl  px-2  w-full p-2"`}
                 >
                   {/* time */}
@@ -185,17 +195,18 @@ const PreviousOrders = () => {
                           )
                         : Math.floor(order.GrandTotal).toLocaleString()
                     }`}</div>
-
                   </div>
 
-                    {/* AdminRemarks */}
-                    <div className=" w-full text-wrap ">
-                      <span className="mr-2 text-gray-500 font-semibold text-sm">Remarks:</span>
+                  {/* AdminRemarks */}
+                  <div className=" w-full text-wrap ">
+                    <span className="mr-2 text-gray-500 font-semibold text-sm">
+                      Remarks:
+                    </span>
 
-                      <h4 className="text-wrap">{order.Remarks? order.Remarks : ''}</h4>
-                    </div>
-
-
+                    <h4 className="text-wrap">
+                      {order.Remarks ? order.Remarks : ""}
+                    </h4>
+                  </div>
                 </div>
               </div>
             );

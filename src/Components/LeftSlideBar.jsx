@@ -8,21 +8,23 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import baloonLogo from "../assets/OtherImages/halabLogo baloon.png";
 
-const leftSlideBar = () => {
+const LeftSlideBar = () => {
   const navigate = useNavigate();
 
   const location = useLocation();
 
   const allOrders = useSelector((state) => state.cart.Orders);
+  console.log(allOrders.length);
+  
 
   let deshBoardItem = [
-    { name: "Desh Board ", icon: <CiBoxList />, Navigateto: "/" },
+    { name: "Sale Chat", icon: <CiBoxList />, Navigateto: "/" },
     {
-      name: "Food Order",
+      name: "Create Order",
       icon: <IoFastFoodOutline />,
       Navigateto: "/FoodOrder",
     },
-    { name: "Order History", icon: <HiOutlineInbox />, Navigateto: "/Orders" },
+    { name: "Orders History", icon: <HiOutlineInbox />, Navigateto: "/Orders" },
   ];
 
   return (
@@ -46,7 +48,7 @@ const leftSlideBar = () => {
               } relative hover:bg-amber-300 px-3 md:px-6 py-2 rounded-xl text-md md:text-xl cursor-pointer flex-col md:flex-row gap-5 justify-center items-center`}
             >
               {menuItem.icon} {menuItem.name}
-              {menuItem.name === "Order History" && (
+              {menuItem.name === "Orders History" && (
                 <h2 className="absolute right-3 top-3 w-6 h-6 flex justify-center items-center text-xs bg-red-500 text-white rounded-full">
                   {allOrders.length}
                 </h2>
@@ -68,4 +70,4 @@ const leftSlideBar = () => {
   );
 };
 
-export default leftSlideBar;
+export default LeftSlideBar;

@@ -75,6 +75,7 @@ const SingleCard = ({ data }) => {
           DrinkSizes.map((Drink, index) => {
             return (
               <span
+              key={index}
                 onClick={() => setselectedDrinkSize(Drink)}
                 className={`border border-gray-400 rounded-xl py-1 px-2 hover:text-white ${
                   selectedDrinkSize === Drink ? "bg-red-400 text-white" : ""
@@ -110,10 +111,7 @@ const SingleCard = ({ data }) => {
 
       {/* ADD Btn */}
       <button
-        onClick={() => {
-          dispatch(
-            addInCart({ ...data, quantity, selectedSize, selectedDrinkSize })
-          );
+        onClick={() => {  dispatch( addInCart({ ...data, quantity, selectedSize, selectedDrinkSize }) );
           playClick(); // sound effect of click
         }}
         className="rounded-xl ml-2 cursor-pointer mt-2 px-8 py-1 font-semibold bg-orange-500 hover:bg-orange-400 text-white border-2"
