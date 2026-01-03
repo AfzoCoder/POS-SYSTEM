@@ -5,28 +5,26 @@ import { CiFries } from "react-icons/ci"; //fries icon
 import { RiDrinksLine } from "react-icons/ri";
 import SingleCard from "./SngleCard";
 import allItemsData from "../Data.js";
-import wings from '../assets/FoodImages/categoryImages/fried-chicken.png'
-import deals from '../assets/FoodImages/categoryImages/deals.png'
-import nugets from '../assets/FoodImages/categoryImages/nugets.jfif'
-import pasta from '../assets/FoodImages/categoryImages/pasta.jpg'
-import Rolls from '../assets/FoodImages/categoryImages/rolls.png'
+import wings from "../assets/FoodImages/categoryImages/fried-chicken.png";
+import deals from "../assets/FoodImages/categoryImages/deals.png";
+import nugets from "../assets/FoodImages/categoryImages/nugets.jfif";
+import pasta from "../assets/FoodImages/categoryImages/pasta.jpg";
+import Rolls from "../assets/FoodImages/categoryImages/rolls.png";
 
-
-const placeOrder = () => {
+const PlaceOrder = () => {
   //all json data into a state variable.
   const [Data, setData] = useState(allItemsData);
-  
 
   const CategoriesArray = [
     { name: "Pizza", icon: <CiPizza /> },
     { name: "Burgers", icon: <PiHamburgerThin /> },
     { name: "Fries", icon: <CiFries /> },
     { name: "ColdDrink", icon: <RiDrinksLine /> },
-    { name: "Pasta",img:pasta, icon: <CiPizza /> },
-    { name: "Nuggets",img:nugets, icon: <CiPizza /> },
-    { name: "Wings", img: wings ,icon: <CiPizza />, },
-    { name: "Paratha Rolls",img: Rolls, icon: <CiPizza /> },
-    { name: "Deals",img: deals, icon: <CiPizza /> },
+    { name: "Pasta", img: pasta, icon: <CiPizza /> },
+    { name: "Nuggets", img: nugets, icon: <CiPizza /> },
+    { name: "Wings", img: wings, icon: <CiPizza /> },
+    { name: "Paratha Rolls", img: Rolls, icon: <CiPizza /> },
+    { name: "Deals", img: deals, icon: <CiPizza /> },
   ];
 
   const [filter, setfilter] = useState("");
@@ -41,6 +39,7 @@ const placeOrder = () => {
       setData(typeFilter);
     }
   };
+
   useEffect(() => {
     filtering();
   }, [filter]);
@@ -48,23 +47,34 @@ const placeOrder = () => {
   return (
     <div className="cat flex-3/4 h-full md:px-4 rounded-xl overflow-hidden">
       <div className="categories relative rounded-xl bg-(--mainColor) px-2 py-2 md:py-6">
-         {/*show all cates  */}
-        <span 
-        onClick={()=>setfilter('')}
-        className="absolute right-4 top-4 text-sm  text-white hover:scale-105 font-medium cursor-pointer">Show All</span>
-        
+        {/*show all cates  */}
+        <span
+          onClick={() => setfilter("")}
+          className={`${filter? '' : 'hidden'} absolute right-4 top-4 text-sm  text-white hover:scale-105 font-medium cursor-pointer`}
+        >
+          Show All
+        </span>
+
         <h1 className="font-[logo] font-semibold text-xl mb-2">Category</h1>
 
-      {/* map for all categories */}
+        {/* map for all categories */}
         <div className="allCategories flex gap-2 flex-wrap ">
-          {CategoriesArray.map((category, index) => {
+          {CategoriesArray.map((category) => {
             return (
               <div
                 onClick={() => setfilter(category.name)}
                 key={category.name}
                 className="rounded-xl bg-white px-4 py-2 text-xl cursor-pointer hover:scale-105 flex justify-center items-center flex-col gap-1 transition-all ease-in duration-150"
               >
-                {category.img? <img className={` ${category.name === 'Wings' ? 'w-6' : 'w-10'}`} src={`${category.img}`}/>: category.icon} {category.name}
+                {category.img ? (
+                  <img
+                    className={` ${category.name === "Wings" ? "w-6" : "w-10"}`}
+                    src={`${category.img}`}
+                  />
+                ) : (
+                  category.icon
+                )}
+                {category.name}
               </div>
             );
           })}
@@ -81,4 +91,4 @@ const placeOrder = () => {
   );
 };
 
-export default placeOrder;
+export default PlaceOrder;
